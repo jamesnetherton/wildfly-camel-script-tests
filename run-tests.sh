@@ -29,7 +29,7 @@ function doAssertions() {
   local ACTUAL_EXIT_CODE="$1"
   local SCENARIO=$2
   local RESOURCE_BASE=$3
-  local EXPECTED_EXIT_CODE=$(jgrep -i ${RESOURCE_BASE}/assert.json -s exitCode)
+  local EXPECTED_EXIT_CODE=$(bundle exec jgrep -i ${RESOURCE_BASE}/assert.json -s exitCode)
 
   printf "\nTEST: ${SCENARIO}\n"
 
@@ -39,7 +39,7 @@ function doAssertions() {
     exit 1
   fi
 
-  for ASSERTION in $(jgrep -i ${RESOURCE_BASE}/assert.json -s assertions)
+  for ASSERTION in $(bundle exec jgrep -i ${RESOURCE_BASE}/assert.json -s assertions)
   do
     if ! grep ${ASSERTION} ${SCENARIO}.out > /dev/null
     then
