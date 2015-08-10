@@ -1,0 +1,1 @@
+-DignoredDependencies=<?xml version='1.0' encoding='UTF-8'?><dependencies><dependency><module>org.apache.httpcomponents:main</module><resource>httpmime-4.3</resource></dependency></dependencies>

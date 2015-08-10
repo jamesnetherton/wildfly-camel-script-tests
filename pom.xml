@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <packaging>pom</packaging>
+
+    <groupId>com.jamesnetherton</groupId>
+    <artifactId>wildfly-camel-script-tests</artifactId>
+
+    <properties>
+      <wildfly.module.dir>modules/system/layers/base</wildfly.module.dir>
+      <smartics.module.dir>modules/system/layers/fuse</smartics.module.dir>
+    </properties>
+
+    <dependencies>
+      <dependency>
+        <groupId>org.codehaus.groovy</groupId>
+        <artifactId>groovy-all</artifactId>
+        <version>2.4.3</version>
+      </dependency>
+    </dependencies>
+
+    <build>
+      <plugins>
+          <plugin>
+              <groupId>org.codehaus.gmaven</groupId>
+              <artifactId>groovy-maven-plugin</artifactId>
+              <version>2.0</version>
+              <configuration>
+                <source>${env.SCRIPT_SOURCE}</source>
+              </configuration>
+          </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,8 @@
+{
+  "exitCode": "1",
+  "assertions": [
+    "Duplicate module name and slot detected: org.apache.httpcomponents:main",
+    "modules/system/layers/fuse/org/apache/httpcomponents/main",
+    "modules/system/layers/base/org/apache/httpcomponents/main"
+  ]
+}

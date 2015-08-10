@@ -1,0 +1,6 @@
+dependencies:
+  pre:
+    - sudo apt-get update; sudo apt-get install groovy curl jgrep -y
+test:
+  override:
+    - sh ./run-tests.sh
