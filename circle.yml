@@ -3,7 +3,8 @@ machine:
     version: 2.2.2
 dependencies:
   pre:
-    - sudo apt-get update; sudo apt-get install groovy curl jgrep -y
+    - sudo apt-get update; sudo apt-get install groovy curl -y
+    - gem install jgrep
 test:
   override:
     - sh ./run-tests.sh
