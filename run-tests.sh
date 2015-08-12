@@ -6,11 +6,11 @@ SCRIPT_NAME=module-checker.groovy
 OLDIFS=${IFS}
 IFS=$'\n'
 
-function cleanup {
+function cleanup () {
   IFS=${OLDIFS}
 }
 
-function runTestScenario {
+function runTestScenario () {
   local SCENARIO=$1
   local RESOURCE_BASE=src/main/resources/${SCENARIO}
   local MODULE_BASE_DIR=${RESOURCE_BASE}/modules/system/layers
@@ -25,7 +25,7 @@ function runTestScenario {
   doAssertions $? ${SCENARIO} ${RESOURCE_BASE}
 }
 
-function doAssertions {
+function doAssertions () {
   local ACTUAL_EXIT_CODE="$1"
   local SCENARIO=$2
   local RESOURCE_BASE=$3

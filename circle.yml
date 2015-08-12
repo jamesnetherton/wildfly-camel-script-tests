@@ -1,11 +1,9 @@
 machine:
-  ruby:
-    version: 2.2.2
+  services:
+    - docker
 dependencies:
-  pre:
-    - sudo apt-get update; sudo apt-get install groovy curl -y
   override:
-    - bundle install
+    - docker build -t jamesnetherton/wildfly-camel-script-tests .
 test:
   override:
-    - sh ./run-tests.sh
+    - docker run  jamesnetherton/wildfly-camel-script-tests
