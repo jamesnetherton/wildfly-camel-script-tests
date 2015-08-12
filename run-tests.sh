@@ -3,14 +3,15 @@
 trap cleanup SIGHUP SIGINT SIGTERM
 
 SCRIPT_NAME=module-checker.groovy
+SCRIPT_DIR=$(dirname $0)
 OLDIFS=${IFS}
 IFS=$'\n'
 
-function cleanup () {
+cleanup () {
   IFS=${OLDIFS}
 }
 
-function runTestScenario () {
+runTestScenario () {
   local SCENARIO=$1
   local RESOURCE_BASE=src/main/resources/${SCENARIO}
   local MODULE_BASE_DIR=${RESOURCE_BASE}/modules/system/layers
@@ -25,11 +26,11 @@ function runTestScenario () {
   doAssertions $? ${SCENARIO} ${RESOURCE_BASE}
 }
 
-function doAssertions () {
+doAssertions () {
   local ACTUAL_EXIT_CODE="$1"
   local SCENARIO=$2
   local RESOURCE_BASE=$3
-  local EXPECTED_EXIT_CODE=$(bundle exec jgrep -i ${RESOURCE_BASE}/assert.json -s exitCode)
+  local EXPECTED_EXIT_CODE=$(jgrep -i ${RESOURCE_BASE}/assert.json -s exitCode)
 
   printf "\nTEST: ${SCENARIO}\n"
 
@@ -39,7 +40,7 @@ function doAssertions () {
     exit 1
   fi
 
-  for ASSERTION in $(bundle exec jgrep -i ${RESOURCE_BASE}/assert.json -s assertions)
+  for ASSERTION in $(jgrep -i ${RESOURCE_BASE}/assert.json -s assertions)
   do
     if ! grep ${ASSERTION} ${SCENARIO}.out > /dev/null
     then
@@ -50,6 +51,8 @@ function doAssertions () {
 
   echo ">>>> PASSED"
 }
+
+cd ${SCRIPT_DIR}
 
 curl -s ${SCRIPT_SOURCE} > ${SCRIPT_NAME}
 

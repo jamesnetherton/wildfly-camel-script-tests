@@ -6,4 +6,4 @@ dependencies:
     - docker build -t jamesnetherton/wildfly-camel-script-tests .
 test:
   override:
-    - docker run  jamesnetherton/wildfly-camel-script-tests
+    - docker run -ti -e "SCRIPT_SOURCE=${SCRIPT_SOURCE}" -e "EXPECTED_SHA=${EXPECTED_SHA}" jamesnetherton/wildfly-camel-script-tests
